@@ -11,13 +11,14 @@ app.use(express.urlencoded({extend: true}));
 
 app.post('/user',  async (req, res) => await userController.add(req, res));
 app.get('/user',  async (req, res) => await userController.get(req, res));
+app.delete('/user/:id', async (req, res) => await userController.delete(req, res));
+app.put('/user/:id', async (req, res) => await userController.update(req, res));
 app.post('/auth', async (req, res) => await userController.signIn(req, res));
 
-app.get('/', (req, res) => res.send('Hello World'));
-app.put('/', (req, res) => res.send('Hello World'));
+app.get('/', (req, res) => res.send(req.body));
+app.put('/', (req, res) => res.send(req.body));
 app.post('/', (req, res) => res.send(req.body));
-app.delete('/', (req, res) => res.send('Hello World'));
-
+app.delete('/', (req, res) => res.send(req.body));
 
 app.use((req, res) => res.send(404));
 
